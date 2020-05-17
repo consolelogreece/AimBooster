@@ -63,11 +63,6 @@ function handleSettingsChange(e)
   if (!inPlay) settings[e.id] = parseInt(e.value);
 }
 
-let createTarget = (x, y, r) => 
-{
-  let birthTime = Date.now();
-}
-
 async function mainLoop(DOMHRTS, previousTick, currentTick)
 {
   if (!inPlay) return;
@@ -97,7 +92,7 @@ function spawnNew()
   let lowestY = ctx.canvas.height - settings.TargetMaxRadius;
   
   let randY = Math.floor(Math.random() * (lowestY - highestY + 1)) + highestY;
-  let randX = Math.floor(Math.random() * (ctx.canvas.width - settings.TargetMaxRadius * 2)) +         settings.TargetMaxRadius;
+  let randX = Math.floor(Math.random() * (ctx.canvas.width - settings.TargetMaxRadius * 2)) + settings.TargetMaxRadius;
 
   targets.push(new Target(randX, randY, 1))
 }
