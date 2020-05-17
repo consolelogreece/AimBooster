@@ -1,0 +1,1 @@
+Aim trainer in vanilla js

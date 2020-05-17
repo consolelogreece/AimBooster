@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/Main.css">
+</head>
+<body>
+    <canvas onclick="handleClick(event)" width=480 height=400 id="GameCanvas">
+    </canvas>
+    <br/>
+    <label>Spawn Rate</label>
+    <br/>
+    <input min="500" max="3000" oninput="handleSettingsChange(this)" onchange="handleSettingsChange(this)" type="range" id="TargetSpawnRate">
+    <br/>
+    <label>Grow Speed</label>
+    <br/>
+    <input min="4" max="20"oninput="handleSettingsChange(this)" onchange="handleSettingsChange(this)"  type="range" id="TargetGrowSpeed">
+    <br/>
+    <!-- <label>Max Radius</label>
+    <br/>
+    <input min="1" max="100" oninput="handleSettingsChange(this)" onchange="handleSettingsChange(this)" type="range" id="TargetMaxRadius"> -->
+    <br/>
+    <button onclick="Start()">start</button>
+    <br/>
+    <button onclick="Stop()">stop</button>
+    <script type="text/javascript" src="../js/Main.js"></script>
+</body>
+</html>
+
+
+

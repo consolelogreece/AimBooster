@@ -1,0 +1,12 @@
+#GameCanvas
+{
+  border:3px solid #222;
+  margin: 0 auto;
+}
+
+.Target
+{
+  border-radius: 100%;
+  background-color:#222;
+  width:10px; height:10px;
+}
