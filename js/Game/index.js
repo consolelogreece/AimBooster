@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function Init()
 {
-    game = new Game(170, 12, infoBarHeight, ctx)
+    game = new Game(2170, 12, infoBarHeight, ctx)
 
     mainLoop()
 }

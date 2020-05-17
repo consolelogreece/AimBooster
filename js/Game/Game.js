@@ -12,7 +12,7 @@ class Game
         this.canvasCtx = canvasCtx;
         this.lastTargetCreationTime = 0;
         this.deltaTime = 0;
-        this.Drawer = new Drawer(canvasCtx);
+        this.Drawer = new Drawer(canvasCtx, topOffset);
         this.latestTick = performance.now();
         this.TargetSpawnRate = TargetSpawnRate;
         this.TargetGrowSpeed = TargetGrowSpeed;
@@ -70,7 +70,7 @@ class Game
 
     Draw()
     {
-        this.canvasCtx.clearRect(0, 0, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height);
+        this.Drawer.Clear();
         
         let fps = this.CalcFps()
         
@@ -94,56 +94,6 @@ class Game
         
         this.Drawer.DrawText("Time: " + timeRounded.toFixed(1) + "s", this.canvasCtx.canvas.width - 10);
         
-        this.canvasCtx.lineWidth = 0.1;
-        
-        this.targets.forEach((target, i) => {
-            this.canvasCtx.beginPath();
-            this.canvasCtx.arc(target.x, target.y, target.r, 0, 2 * Math.PI);
-            var grd = this.canvasCtx.createRadialGradient(target.x, target.y, target.r,target.x, target.y, 0);
-            grd.addColorStop(0,"#0857a6");
-            grd.addColorStop(1,"rgba(154, 200, 245, 0.7)");
-            this.canvasCtx.fillStyle = grd;
-            this.canvasCtx.fill();
-            this.canvasCtx.stroke(); 
-        });
-    }
-}
-
-class Drawer
-{
-    constructor(canvasCtx)
-    {
-        this.canvasCtx = canvasCtx;
-    }
-
-    DrawText(text, offsetRight)
-    {
-        this.canvasCtx.font = "15px Arial";
-        this.canvasCtx.fillStyle = "white";
-        this.canvasCtx.fillText(text, this.canvasCtx.canvas.width - offsetRight, infoBarHeight / 1.6)
-    }
-
-    DrawGrid(){
-        var bw = this.canvasCtx.canvas.width;
-        var bh = this.canvasCtx.canvas.height;
-        var p = 0;
-
-        for (var x = 0; x <= bw; x += 40) {
-            this.canvasCtx.moveTo(0.5 + x + p, p);
-            this.canvasCtx.lineTo(0.5 + x + p, bh + p);
-        }
-
-        for (var x = 0; x <= bh; x += 40) {
-            this.canvasCtx.moveTo(p, 0.5 + x + p);
-            this.canvasCtx.lineTo(bw + p, 0.5 + x + p);
-        }
-        this.canvasCtx.strokeStyle = "#bbb";
-        this.canvasCtx.stroke();
-    }
-
-    DrawInfoBox()
-    {
-        this.canvasCtx.fillStyle = "#222222";
-        this.canvasCtx.fillRect(0, 0, this.canvasCtx.canvas.width, 40);
+        this.targets.forEach(target => this.Drawer.DrawTarget(target));
     }
 }
