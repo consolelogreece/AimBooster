@@ -1,5 +1,7 @@
 let gameCanvas = document.getElementById("GameCanvas");
 
+gameCanvas.onclick = e => HandleClick(e);
+
 let ctx = gameCanvas.getContext("2d");
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -8,22 +10,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let Stack = {};
 
-let state = "Game";
+let state = "MainMenu";
 
 let infoBarHeight = 40; //px
 
-function InitGame()
+function InitGame(spawnrate, growspeed)
 {
-    game = new Game(2170, 12, infoBarHeight, ctx);
+    Stack.Game  = new Game(spawnrate, growspeed, infoBarHeight, ctx);
+}
 
-    gameCanvas.onclick = e => game.HandleClick(e);
-
-    Stack.Game = game;
+function InitMenus()
+{
+    Stack.MainMenu = new MainMenu(ctx, () => {
+        InitGame(2000, 6);
+        state = "Game";
+    });
 }
 
 function Setup()
 {
     InitGame();
+
+    InitMenus();
 
     mainLoop();
 }
@@ -40,4 +48,9 @@ function mainLoop(DOMHRTS)
     Stack[state].Draw();
  
     requestAnimationFrame(_ => mainLoop(_));
+}
+
+function Start()
+{
+    InitGame();
 }

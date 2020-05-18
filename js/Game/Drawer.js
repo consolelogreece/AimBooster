@@ -19,7 +19,8 @@ class Drawer
         this.canvasCtx.fillText(text, this.canvasCtx.canvas.width - offsetRight, infoBarHeight / 1.6)
     }
 
-    DrawGrid(){
+    DrawGrid()
+    {
         var bw = this.canvasCtx.canvas.width;
         var bh = this.canvasCtx.canvas.height;
         var p = 0;
