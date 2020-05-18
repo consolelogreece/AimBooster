@@ -21,7 +21,7 @@ function InitGame(spawnrate, growspeed)
 
 function InitMenus()
 {
-    let callbacks = {
+    let mainMenuCallbacks = {
         Easy: () =>
         {
             InitGame(1200, 10)
@@ -41,12 +41,21 @@ function InitMenus()
         }
     };
 
-    Stack.MainMenu = new MainMenu(ctx, callbacks);
+    Stack.MainMenu = new MainMenu(ctx, mainMenuCallbacks);
 }
 
 function GameOver(score, accuracy)
 {
-    state = "MainMenu";
+    console.log(score, accuracy)
+    let gameOverCallbacks = {
+        MainMenu: () => {
+            state="MainMenu";
+        }
+    };
+
+    Stack.GameOverMenu = new GameOverMenu(ctx, gameOverCallbacks, {Score: score, Accuracy: accuracy});
+
+    state = "GameOverMenu";
 }
 
 function Setup()

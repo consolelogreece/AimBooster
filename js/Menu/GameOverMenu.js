@@ -1,23 +1,22 @@
-class MainMenu
+class GameOverMenu
 {
-    constructor(canvasCtx, callbacks)
+    constructor(canvasCtx, callbacks, GameStats)
     {
         this.canvasCtx = canvasCtx;
+
+        this.GameStats = GameStats;
 
         let paddingside =  canvasCtx.canvas.width / 10;
 
         this.rects = {
-            Easy: {
-                x: paddingside, y: 25, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Easy, text: "Easy"
+            MainMenu: {
+                x: paddingside, y: 325, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.MainMenu, text: "Main Menu"
             },
-            Intermediate: {
-                x: paddingside, y: 125, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Intermediate, text: "Intermediate"
+            Score: {
+                x: paddingside, y: 125, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Score:  " + GameStats.Score
             },
-            Hard: {
-                x: paddingside, y: 225, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Hard, text: "Hard"
-            },
-            Insane: {
-                x: paddingside, y: 325, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Insane, text: "Insane"
+            Accuracy: {
+                x: paddingside, y: 225, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Accuracy:  " + GameStats.Accuracy + "%"
             }
         };
     }
@@ -41,9 +40,7 @@ class MainMenu
     }
 
     Update()
-    {
-
-    }
+    {}
 
     Draw()
     {

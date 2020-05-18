@@ -38,7 +38,7 @@ class Game
 
         this.latestTick = currentTick;
 
-        if (this.IsGameOver()) this.gameOverCB();
+        if (this.IsGameOver()) this.gameOverCB(this.score, this.CalculateAccPercent());
     }
 
     IsGameOver()
@@ -93,17 +93,22 @@ class Game
         
         this.Drawer.DrawText("Score: " + Math.round(this.score), this.canvasCtx.canvas.width - this.canvasCtx.canvas.width / 1.6);
         
-        let accPercent = 0;
-        
-        if (this.totalClicks > 0) accPercent = Math.round(((this.score / this.totalClicks) * 100) * 10) / 10;
-        
-        this.Drawer.DrawText("Accuracy: " + accPercent + "%", this.canvasCtx.canvas.width - this.canvasCtx.canvas.width / 3.2);
+        this.Drawer.DrawText("Accuracy: " + this.CalculateAccPercent() + "%", this.canvasCtx.canvas.width - this.canvasCtx.canvas.width / 3.2);
         
         let timeRounded = Math.round(((this.latestTick - this.gameCreationTime) / 1000) * 10) / 10;
         
         this.Drawer.DrawText("Time: " + timeRounded.toFixed(1) + "s", this.canvasCtx.canvas.width - 10);
         
         this.targets.forEach(target => this.Drawer.DrawTarget(target));
+    }
+
+    CalculateAccPercent()
+    {
+        let accPercent = 0;
+        
+        if (this.totalClicks > 0) accPercent = Math.round(((this.score / this.totalClicks) * 100) * 10) / 10;
+
+        return accPercent;
     }
 
     HandleClick(e)
