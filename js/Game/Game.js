@@ -114,7 +114,7 @@ class Game
     HandleClick(e)
     {
         this.totalClicks++;
-        let coords = GetRelativeMouseCoordsFromEvent(e);
+        let coords = GetRelativeMouseCoordsFromEvent(e, this.canvasCtx);
         let target = this.shotHandler.GetIntersectingTarget(coords, this.targets);
         if (target != null)
         {
