@@ -13,6 +13,7 @@ class Game
         this.lastTargetCreationTime = 0;
         this.deltaTime = 0;
         this.Drawer = new Drawer(canvasCtx, topOffset);
+        this.shotHandler = new ShotHandler();
         this.latestTick = performance.now();
         this.TargetSpawnRate = TargetSpawnRate;
         this.TargetGrowSpeed = TargetGrowSpeed;
@@ -95,5 +96,17 @@ class Game
         this.Drawer.DrawText("Time: " + timeRounded.toFixed(1) + "s", this.canvasCtx.canvas.width - 10);
         
         this.targets.forEach(target => this.Drawer.DrawTarget(target));
+    }
+
+    HandleClick(e)
+    {
+        this.totalClicks++;
+        let coords = GetRelativeMouseCoordsFromEvent(e);
+        let target = this.shotHandler.GetIntersectingTarget(coords, this.targets);
+        if (target != null)
+        {
+            this.score ++;//(((target.target.score() * 10000 / settings.TargetMaxRadius * 100000 / settings.TargetSpawnRate) * settings.TargetGrowSpeed) / 100) + 1;
+            this.targets.splice(target.index, 1);
+        }
     }
 }

@@ -1,16 +1,13 @@
 
 let infoBarHeight = 40; //px
 
-document.addEventListener("DOMContentLoaded", function() {
- 
-    Init();
-  });
-
-function Init()
+function InitGame()
 {
-    game = new Game(2170, 12, infoBarHeight, ctx)
+    game = new Game(2170, 12, infoBarHeight, ctx);
 
-    mainLoop()
+    gameCanvas.onclick = e => game.HandleClick(e);
+
+    mainLoop();
 }
 
 let game;

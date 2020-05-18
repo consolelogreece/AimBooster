@@ -51,9 +51,6 @@ class Drawer
         var grd = this.canvasCtx.createRadialGradient(target.x, target.y, target.r,target.x, target.y, 0);
         grd.addColorStop(0,"#0857a6");
         grd.addColorStop(1,"rgba(154, 200, 245, 0.7)");
-
-        console.log("drawing a target")
-
         this.canvasCtx.fillStyle = grd;
         this.canvasCtx.beginPath();
         this.canvasCtx.arc(target.x, target.y, target.r, 0, 2 * Math.PI);
