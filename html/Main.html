@@ -8,24 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../css/Main.css">
 </head>
 <body>
-    <canvas width=480 height=400 id="GameCanvas">
-    </canvas>
-    <br/>
-    <label>Spawn Rate</label>
-    <br/>
-    <input min="500" max="3000" oninput="handleSettingsChange(this)" onchange="handleSettingsChange(this)" type="range" id="TargetSpawnRate">
-    <br/>
-    <label>Grow Speed</label>
-    <br/>
-    <input min="4" max="20"oninput="handleSettingsChange(this)" onchange="handleSettingsChange(this)"  type="range" id="TargetGrowSpeed">
-    <br/>
-    <!-- <label>Max Radius</label>
-    <br/>
-    <input min="1" max="100" oninput="handleSettingsChange(this)" onchange="handleSettingsChange(this)" type="range" id="TargetMaxRadius"> -->
-    <br/>
-    <button onclick="Start()">start</button>
-    <br/>
-    <button onclick="Stop()">stop</button>
+    <canvas width=480 height=400 id="GameCanvas"></canvas>
     <script type="text/javascript" src="../js/Game/Game.js"></script>
     <script type="text/javascript" src="../js/Game/Target.js"></script>
     <script type="text/javascript" src="../js/Game/Drawer.js"></script>
@@ -33,6 +16,7 @@
     <script type="text/javascript" src="../js/Utils/MouseCoords.js"></script>
     <script type="text/javascript" src="../js/Game/ShotHandler.js"></script>
     <script type="text/javascript" src="../js/Menu/MainMenu.js"></script>
+    <script type="text/javascript" src="../js/Menu/Utils/PointInRectangle.js"></script>
 </body>
 </html>
 

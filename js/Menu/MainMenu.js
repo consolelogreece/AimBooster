@@ -1,12 +1,23 @@
 class MainMenu
 {
-    constructor(canvasCtx, callback)
+    constructor(canvasCtx, callbacks)
     {
         this.canvasCtx = canvasCtx;
-        this.callback = callback;
+
+        let paddingside =  canvasCtx.canvas.width / 10;
+
         this.rects = {
-            Start: {
-                x: 0, y: 0, w: 0, h: 0
+            Easy: {
+                x: paddingside, y: 25, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Easy
+            },
+            Intermediate: {
+                x: paddingside, y: 125, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Intermediate
+            },
+            Hard: {
+                x: paddingside, y: 225, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Hard
+            },
+            Insane: {
+                x: paddingside, y: 325, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Insane
             }
         };
     }
@@ -17,7 +28,7 @@ class MainMenu
 
         let rect = this.GetRect(coords);
 
-        if (rect != undefined) this.callback();
+        if (rect != undefined) rect.cb();
     }
 
     GetRect(coords)
@@ -25,10 +36,7 @@ class MainMenu
         for (var key in this.rects) 
         {
             let rect = this.rects[key];
-            if (coords.x > rect.x && coords.x < rect.x + rect.w && coords.y > rect.y && coords.y < rect.y + rect.h)
-            {
-                return rect;
-            }
+            if (IsPointInsideRectangle(coords.x, coords.y, rect.x, rect.y, rect.w, rect.h)) return rect;
         }
     }
 
@@ -39,23 +47,22 @@ class MainMenu
 
     Draw()
     {
-        let paddingside =  this.canvasCtx.canvas.width / 10;
-        this.canvasCtx.clearRect(0, 0, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height);
-        this.canvasCtx.beginPath();
-        this.canvasCtx.rect(paddingside, 100, this.canvasCtx.canvas.width - paddingside * 2, 40); 
-
-        this.rects.Start.x = paddingside;
-        this.rects.Start.y = 100;
-        this.rects.Start.w = this.canvasCtx.canvas.width - paddingside * 2;
-        this.rects.Start.h = 40;
-
-        this.canvasCtx.fillStyle = '#333';
-        this.canvasCtx.fill(); 
-        this.canvasCtx.stroke();
-        this.canvasCtx.closePath();
         this.canvasCtx.font = '30pt Kremlin Pro Web';
-        this.canvasCtx.fillStyle = 'white';
+       
         this.canvasCtx.textBaseline = "top";
-        this.canvasCtx.fillText('Start', paddingside, 100);
+
+        this.canvasCtx.clearRect(0, 0, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height);
+
+        for(let key in this.rects)
+        {
+            this.canvasCtx.beginPath();
+            this.canvasCtx.rect(this.rects[key].x, this.rects[key].y, this.rects[key].w, this.rects[key].h); 
+            this.canvasCtx.fillStyle = '#333';
+            this.canvasCtx.fill(); 
+            this.canvasCtx.stroke();
+            this.canvasCtx.closePath();
+            this.canvasCtx.fillStyle = 'white';
+            this.canvasCtx.fillText(key, this.rects[key].x, this.rects[key].y);
+        }  
     }
 }

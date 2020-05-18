@@ -16,15 +16,32 @@ let infoBarHeight = 40; //px
 
 function InitGame(spawnrate, growspeed)
 {
-    Stack.Game  = new Game(spawnrate, growspeed, infoBarHeight, ctx);
+    Stack.Game = new Game(spawnrate, growspeed, infoBarHeight, ctx);
 }
 
 function InitMenus()
 {
-    Stack.MainMenu = new MainMenu(ctx, () => {
-        InitGame(2000, 6);
-        state = "Game";
-    });
+    let callbacks = {
+        Easy: () =>
+        {
+            InitGame(1200, 10)
+            state = "Game";
+        },
+        Intermediate: () => {
+            InitGame(500, 10)
+            state = "Game";
+        },
+        Hard: () => {
+            InitGame(300, 12)
+            state = "Game";
+        },
+        Insane: () => {
+            InitGame(200, 16)
+            state = "Game";
+        }
+    };
+
+    Stack.MainMenu = new MainMenu(ctx, callbacks);
 }
 
 function Setup()
