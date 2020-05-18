@@ -48,7 +48,6 @@ class MainMenu
     Draw()
     {
         this.canvasCtx.font = '30pt Kremlin Pro Web';
-       
         this.canvasCtx.textBaseline = "top";
 
         this.canvasCtx.clearRect(0, 0, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height);

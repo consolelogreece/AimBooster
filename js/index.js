@@ -16,7 +16,7 @@ let infoBarHeight = 40; //px
 
 function InitGame(spawnrate, growspeed)
 {
-    Stack.Game = new Game(spawnrate, growspeed, infoBarHeight, ctx);
+    Stack.Game = new Game(spawnrate, growspeed, infoBarHeight, ctx, GameOver, 10 * 1000);
 }
 
 function InitMenus()
@@ -42,6 +42,11 @@ function InitMenus()
     };
 
     Stack.MainMenu = new MainMenu(ctx, callbacks);
+}
+
+function GameOver(score, accuracy)
+{
+    state = "MainMenu";
 }
 
 function Setup()

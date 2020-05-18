@@ -1,6 +1,6 @@
 class Game
 {
-    constructor(TargetSpawnRate, TargetGrowSpeed, topOffset, canvasCtx)
+    constructor(TargetSpawnRate, TargetGrowSpeed, topOffset, canvasCtx, GameOverCB, GameTimeLimitMS)
     {
         this.gameCreationTime = performance.now();
         this.score = 0;
@@ -18,6 +18,8 @@ class Game
         this.TargetSpawnRate = TargetSpawnRate;
         this.TargetGrowSpeed = TargetGrowSpeed;
         this.TargetMaxRadius = 20;
+        this.gameOverCB = GameOverCB;
+        this.GameTimeLimitMS = GameTimeLimitMS;
     }
 
     Update()
@@ -35,11 +37,17 @@ class Game
         }
 
         this.latestTick = currentTick;
+
+        if (this.IsGameOver()) this.gameOverCB();
+    }
+
+    IsGameOver()
+    {
+        return (this.latestTick > this.gameCreationTime + this.GameTimeLimitMS);
     }
 
     UpdateTargets()
     {
-        
         for(let i = this.targets.length - 1; i >= 0; i--)
         {
             let target = this.targets[i];  
