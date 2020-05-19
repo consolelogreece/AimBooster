@@ -8,21 +8,23 @@ class MainMenu
 
         this.Drawer = new DrawerMenu(canvasCtx);
 
+        this.hovered = "";
+
         this.rects = {
             Easy: {
-                x: paddingside, y: 120, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Easy, text: "Easy"
+                x: paddingside, y: 120, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Easy, text: "Easy", clickable: true
             },
             Intermediate: {
-                x: paddingside, y: 180, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Intermediate, text: "Intermediate"
+                x: paddingside, y: 180, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Intermediate, text: "Intermediate", clickable: true
             },
             Hard: {
-                x: paddingside, y: 240, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Hard, text: "Hard"
+                x: paddingside, y: 240, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Hard, text: "Hard", clickable: true
             },
             Insane: {
-                x: paddingside, y: 300, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Insane, text: "Insane"
+                x: paddingside, y: 300, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Insane, text: "Insane", clickable: true
             },
             HighScoresMenu: {
-                x: paddingside, y: 360, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "Your High Scores"
+                x: paddingside, y: 360, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "Your High Scores", clickable: true
             }
         };
 
@@ -33,17 +35,24 @@ class MainMenu
     {
         let coords = GetRelativeMouseCoordsFromEvent(e, this.canvasCtx);
 
-        let rect = this.GetRect(coords);
+        let rect = GetRect(this.rects, coords);
 
-        if (rect != undefined) rect.cb();
+        if (rect != undefined) {rect.item.cb()};
     }
 
-    GetRect(coords)
+    HandleMouseMove(e)
     {
-        for (var key in this.rects) 
+        let coords = GetRelativeMouseCoordsFromEvent(e, this.canvasCtx);
+
+        let rect = GetRect(this.rects, coords);
+
+        if (rect != undefined && rect.item.clickable)
         {
-            let rect = this.rects[key];
-            if (IsPointInsideRectangle(coords.x, coords.y, rect.x, rect.y, rect.w, rect.h)) return rect;
+            this.hovered = rect.name;
+        }
+        else
+        {
+            this.hovered = "";
         }
     }
 
@@ -65,7 +74,7 @@ class MainMenu
         
         for(let key in this.rects)
         {
-            this.Drawer.DrawRect(this.rects[key]);
+            this.Drawer.DrawRect(this.rects[key], this.hovered == key);
         }
     }
 }

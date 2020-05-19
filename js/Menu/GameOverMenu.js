@@ -14,21 +14,23 @@ class GameOverMenu
 
         this.rects = {
             Score: {
-                x: paddingside, y: 120, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Score:  " + GameStats.Score
+                x: paddingside, y: 120, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Score:  " + GameStats.Score, clickable: false
             },
             Accuracy: {
-                x: paddingside, y: 180, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Accuracy:  " + GameStats.Accuracy + "%"
+                x: paddingside, y: 180, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Accuracy:  " + GameStats.Accuracy + "%", clickable: false
             },
             CurrentHighScore: {
-                x: paddingside, y: 240, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb:  () => {}, text: "Current Highest: " + GameStats.CurrentHighScore
+                x: paddingside, y: 240, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb:  () => {}, text: "Current Highest: " + GameStats.CurrentHighScore, clickable: false
             },
             HighScoresMenu: {
-                x: paddingside, y: 300, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "Your High Scores"
+                x: paddingside, y: 300, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "Your High Scores", clickable: true
             },
             MainMenu: {
-                x: paddingside, y: 360, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.MainMenu, text: "Main Menu"
+                x: paddingside, y: 360, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.MainMenu, text: "Main Menu", clickable: true
             }
         };
+
+        this.hovered = "";
 
         this.titleOffset = 50;
     }
@@ -37,17 +39,26 @@ class GameOverMenu
     {
         let coords = GetRelativeMouseCoordsFromEvent(e, this.canvasCtx);
 
-        let rect = this.GetRect(coords);
+        let rect = GetRect(this.rects, coords);
 
-        if (rect != undefined) rect.cb();
+        if (rect != undefined) rect.item.cb();
     }
 
-    GetRect(coords)
+
+    HandleMouseMove(e)
     {
-        for (var key in this.rects) 
+        let coords = GetRelativeMouseCoordsFromEvent(e, this.canvasCtx);
+
+        let rect = GetRect(this.rects, coords);
+
+        if (rect != undefined && rect.item.clickable)
         {
-            let rect = this.rects[key];
-            if (IsPointInsideRectangle(coords.x, coords.y, rect.x, rect.y, rect.w, rect.h)) return rect;
+            console.log("right")
+            this.hovered = rect.name;
+        }
+        else
+        {
+            this.hovered = "";
         }
     }
 
@@ -69,7 +80,7 @@ class GameOverMenu
 
         for(let key in this.rects)
         {
-            this.Drawer.DrawRect(this.rects[key]);
+            this.Drawer.DrawRect(this.rects[key], this.hovered == key);
         }
     }
 

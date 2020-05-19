@@ -1,8 +1,10 @@
 let gameCanvas = document.getElementById("GameCanvas");
 
-gameCanvas.onclick = e => HandleClick(e);
+gameCanvas.onclick = e => HandleEvent("HandleClick", e);
 
-window.onkeydown = e => HandleKeyPress(e);
+gameCanvas.onmousemove = e => HandleEvent("HandleMouseMove", e)
+
+window.onkeydown = e => HandleEvent("HandleKeyPress", e);
 
 let ctx = gameCanvas.getContext("2d");
 
@@ -89,17 +91,10 @@ function Setup()
     mainLoop();
 }
 
-function HandleClick(e)
+function HandleEvent(eventHandlerName, event)
 {
-    if (typeof Stack[state].HandleClick === "function") { 
-        Stack[state].HandleClick(e);
-    }
-}
-
-function HandleKeyPress(e)
-{
-    if (typeof Stack[state].HandleKeyPress === "function") { 
-        Stack[state].HandleKeyPress(e);
+    if (typeof Stack[state][eventHandlerName] === "function") { 
+        Stack[state][eventHandlerName](event);
     }
 }
 
