@@ -34,6 +34,22 @@
   color: #222;
 }
 
+.tip
+{
+  margin-top: 50px !important;
+}
+
+.github
+{
+  height: 40px;
+  width: 40px;
+  fill: #222;
+}
+.github:hover
+{
+  fill: #444;
+}
+
 body
 {
   text-align: center;
