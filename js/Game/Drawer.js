@@ -1,4 +1,4 @@
-class Drawer
+class DrawerGame
 {
     constructor(canvasCtx, topOffset)
     {

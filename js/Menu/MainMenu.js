@@ -6,6 +6,8 @@ class MainMenu
 
         let paddingside =  canvasCtx.canvas.width / 10;
 
+        this.Drawer = new DrawerMenu(canvasCtx);
+
         this.rects = {
             Easy: {
                 x: paddingside, y: 25, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Easy, text: "Easy"
@@ -47,22 +49,14 @@ class MainMenu
 
     Draw()
     {
+        this.Drawer.Clear();
+
         this.canvasCtx.font = '30pt Kremlin Pro Web';
         this.canvasCtx.textBaseline = "top";
-
-        this.canvasCtx.clearRect(0, 0, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height);
-
+        
         for(let key in this.rects)
         {
-            this.canvasCtx.beginPath();
-            this.canvasCtx.rect(this.rects[key].x, this.rects[key].y, this.rects[key].w, this.rects[key].h); 
-            this.canvasCtx.fillStyle = '#333';
-            this.canvasCtx.fill(); 
-            this.canvasCtx.stroke();
-            this.canvasCtx.closePath();
-            this.canvasCtx.fillStyle = 'white';
-            this.canvasCtx.textAlign = "center";  
-            this.canvasCtx.fillText(this.rects[key].text, this.rects[key].x + this.rects[key].w / 2, this.rects[key].y);
-        }  
+            this.Drawer.DrawRect(this.rects[key]);
+        }
     }
 }

@@ -12,7 +12,7 @@ class Game
         this.canvasCtx = canvasCtx;
         this.lastTargetCreationTime = 0;
         this.deltaTime = 0;
-        this.Drawer = new Drawer(canvasCtx, topOffset);
+        this.Drawer = new DrawerGame(canvasCtx, topOffset);
         this.shotHandler = new ShotHandler();
         this.latestTick = performance.now();
         this.TargetSpawnRate = TargetSpawnRate;
