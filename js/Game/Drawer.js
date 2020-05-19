@@ -16,6 +16,7 @@ class Drawer
     {
         this.canvasCtx.font = "15px Arial";
         this.canvasCtx.fillStyle = "white";
+        this.canvasCtx.textBaseline = "middle";
         this.canvasCtx.fillText(text, this.canvasCtx.canvas.width - offsetRight, infoBarHeight / 1.6)
     }
 

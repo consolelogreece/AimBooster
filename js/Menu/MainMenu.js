@@ -61,7 +61,8 @@ class MainMenu
             this.canvasCtx.stroke();
             this.canvasCtx.closePath();
             this.canvasCtx.fillStyle = 'white';
-            this.canvasCtx.fillText(this.rects[key].text, this.rects[key].x, this.rects[key].y);
+            this.canvasCtx.textAlign = "center";  
+            this.canvasCtx.fillText(this.rects[key].text, this.rects[key].x + this.rects[key].w / 2, this.rects[key].y);
         }  
     }
 }

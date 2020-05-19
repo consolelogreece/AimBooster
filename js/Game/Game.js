@@ -84,6 +84,8 @@ class Game
         let fps = this.CalcFps()
         
         this.canvasCtx.lineWidth = 1;
+
+        this.canvasCtx.textAlign = "left";
         
         this.Drawer.DrawGrid();
         
