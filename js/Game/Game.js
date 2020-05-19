@@ -3,6 +3,7 @@ class Game
     constructor(TargetSpawnRate, TargetGrowSpeed, topOffset, canvasCtx, GameOverCB, GameTimeLimitMS)
     {
         this.gameCreationTime = performance.now();
+        this.gameStartTime = performance.now();
         this.score = 0;
         this.totalClicks = 0;
         this.hits = 0;
@@ -20,30 +21,48 @@ class Game
         this.TargetMaxRadius = 20;
         this.gameOverCB = GameOverCB;
         this.GameTimeLimitMS = GameTimeLimitMS;
+
+        this.countdownSeconds = 0;
+        this.countdownEndsSeconds = 3;
+
+        this.started = false;
     }
 
     Update()
     {
-        let currentTick = performance.now();
+        let timeNow = performance.now();
+
+        if (!this.started)
+        {
+            this.countdownSeconds = (timeNow - this.gameCreationTime) / 1000;
+
+            if (this.countdownSeconds > this.countdownEndsSeconds) 
+            {
+                this.started = true
+                this.gameStartTime = timeNow;
+            };
+
+            return;
+        }
 
         this.UpdateTargets();
 
-        this.deltaTime = currentTick - this.latestTick;
+        this.deltaTime = timeNow - this.latestTick;
         
-        if (currentTick - this.lastTargetCreationTime > this.TargetSpawnRate)
+        if (timeNow - this.lastTargetCreationTime > this.TargetSpawnRate)
         {
             this.SpawnNewTarget();
-            this.lastTargetCreationTime = currentTick;
+            this.lastTargetCreationTime = timeNow;
         }
 
-        this.latestTick = currentTick;
+        this.latestTick = timeNow;
 
         if (this.IsGameOver()) this.gameOverCB(this.score, this.CalculateAccPercent());
     }
 
     IsGameOver()
     {
-        return (this.latestTick > this.gameCreationTime + this.GameTimeLimitMS);
+        return (this.latestTick > this.gameStartTime + this.GameTimeLimitMS);
     }
 
     UpdateTargets()
@@ -97,11 +116,13 @@ class Game
         
         this.Drawer.DrawText("Accuracy: " + this.CalculateAccPercent() + "%", this.canvasCtx.canvas.width - this.canvasCtx.canvas.width / 3.2);
         
-        let timeRounded = Math.round(((this.latestTick - this.gameCreationTime) / 1000) * 10) / 10;
+        let timeRounded = Math.round(((this.latestTick - this.gameStartTime) / 1000) * 10) / 10;
         
         this.Drawer.DrawText("Time: " + timeRounded.toFixed(1) + "s", this.canvasCtx.canvas.width - 10);
         
         this.targets.forEach(target => this.Drawer.DrawTarget(target));
+
+        if (!this.started) this.Drawer.OverlayText(Math.ceil(this.countdownEndsSeconds - this.countdownSeconds));
     }
 
     CalculateAccPercent()
@@ -120,7 +141,7 @@ class Game
         let target = this.shotHandler.GetIntersectingTarget(coords, this.targets);
         if (target != null)
         {
-            this.score ++;//(((target.target.score() * 10000 / settings.TargetMaxRadius * 100000 / settings.TargetSpawnRate) * settings.TargetGrowSpeed) / 100) + 1;
+            this.score ++;
             this.targets.splice(target.index, 1);
         }
     }
