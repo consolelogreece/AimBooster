@@ -128,7 +128,7 @@ class Game
             this.canvasCtx.fillStyle = "rgba(34, 34, 34, 0.7)";
             this.canvasCtx.fillRect(0, this.topOffset, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height);
 
-            this.Drawer.OverlayText("Get Ready!", this.canvasCtx.canvas.width / 2, 100, 30);
+            this.Drawer.OverlayText("Get Ready!", this.canvasCtx.canvas.width / 2, 100, 50);
 
             this.Drawer.OverlayText(Math.ceil(this.countdownEndsSeconds - this.countdownSeconds), this.canvasCtx.canvas.width / 2, this.canvasCtx.canvas.height / 2, 60);
         }
