@@ -11,14 +11,20 @@ class GameOverMenu
         this.Drawer = new DrawerMenu(canvasCtx);
 
         this.rects = {
-            MainMenu: {
-                x: paddingside, y: 325, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.MainMenu, text: "Main Menu"
-            },
             Score: {
-                x: paddingside, y: 125, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Score:  " + GameStats.Score
+                x: paddingside, y: 25, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Score:  " + GameStats.Score
             },
             Accuracy: {
-                x: paddingside, y: 225, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Accuracy:  " + GameStats.Accuracy + "%"
+                x: paddingside, y: 110, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Accuracy:  " + GameStats.Accuracy + "%"
+            },
+            CurrentHighScore: {
+                x: paddingside, y: 195, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb:  () => {}, text: "Current Highest: " + GameStats.CurrentHighScore
+            },
+            HighScoresMenu: {
+                x: paddingside, y: 280, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "High Scores"
+            },
+            MainMenu: {
+                x: paddingside, y: 365, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.MainMenu, text: "Main Menu"
             }
         };
     }

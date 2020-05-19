@@ -60,12 +60,19 @@ function GameOver(score, accuracy, difficulty)
     let gameOverCallbacks = {
         MainMenu: () => {
             state="MainMenu";
+        },
+        HighScoresMenu: () => {
+            state = "HighScoresMenu";
         }
     };
 
     SetHighScore({score, accuracy}, difficulty);
 
-    Stack.GameOverMenu = new GameOverMenu(ctx, gameOverCallbacks, {Score: score, Accuracy: accuracy});
+    let scores = GetHighScores();
+
+    let currentHighScore = scores[difficulty];
+
+    Stack.GameOverMenu = new GameOverMenu(ctx, gameOverCallbacks, {Score: score, Accuracy: accuracy, CurrentHighScore: currentHighScore.score});
 
     state = "GameOverMenu";
 }
