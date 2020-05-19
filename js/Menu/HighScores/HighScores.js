@@ -6,6 +6,8 @@ class HighScoresMenu
 
         let paddingside =  canvasCtx.canvas.width / 10;
 
+        this.callbacks = callbacks;
+
         this.rects = {
             MainMenu: {
                 x: paddingside, y: 375, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.MainMenu, text: "Main Menu"
@@ -52,7 +54,7 @@ class HighScoresMenu
 
         this.canvasCtx.font = '30pt Roboto';
 
-        this.canvasCtx.fillStyle = '#444';
+        this.canvasCtx.fillStyle = '#333';
         this.canvasCtx.textAlign = "center";  
         this.canvasCtx.fillText("High Scores", this.canvasCtx.canvas.width / 2, this.titleOffset);
 
@@ -63,7 +65,7 @@ class HighScoresMenu
         this.DrawColumnNames(offset);
 
         this.canvasCtx.font = '20pt Roboto';
-        this.canvasCtx.fillStyle = '#444';
+        this.canvasCtx.fillStyle = '#333';
         this.canvasCtx.textAlign = "center";
 
         let i = 1;
@@ -88,7 +90,7 @@ class HighScoresMenu
     DrawColumnNames(offset)
     {
         this.canvasCtx.font = "30px Roboto";
-        this.canvasCtx.fillStyle = "#444";
+        this.canvasCtx.fillStyle = "#333";
         this.canvasCtx.fillText("Difficulty", this.canvasCtx.canvas.width / 6, offset);
         this.canvasCtx.fillText("Score", this.canvasCtx.canvas.width / 2 , offset);
         this.canvasCtx.fillText("Accuracy", this.canvasCtx.canvas.width -  this.canvasCtx.canvas.width / 6, offset)
@@ -121,5 +123,13 @@ class HighScoresMenu
         
         this.canvasCtx.strokeStyle = "#bbb";
         this.canvasCtx.stroke();
+    }
+
+    HandleKeyPress(e)
+    {
+        if (e.key === "Escape")
+        {
+            this.callbacks.MainMenu();
+        }
     }
 }

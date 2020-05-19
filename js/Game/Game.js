@@ -1,6 +1,6 @@
 class Game
 {
-    constructor(TargetSpawnRate, TargetGrowSpeed, topOffset, canvasCtx, GameOverCB, GameTimeLimitMS)
+    constructor(TargetSpawnRate, TargetGrowSpeed, topOffset, canvasCtx, GameOverCB, cancelGameCB, GameTimeLimitMS)
     {
         this.gameCreationTime = performance.now();
         this.gameStartTime = performance.now();
@@ -21,6 +21,8 @@ class Game
         this.TargetMaxRadius = 20;
         this.gameOverCB = GameOverCB;
         this.GameTimeLimitMS = GameTimeLimitMS;
+
+        this.cancelGameCB = cancelGameCB;
 
         this.countdownSeconds = 0;
         this.countdownEndsSeconds = 3;
@@ -131,6 +133,8 @@ class Game
             this.Drawer.OverlayText("Get Ready!", this.canvasCtx.canvas.width / 2, 100, 50);
 
             this.Drawer.OverlayText(Math.ceil(this.countdownEndsSeconds - this.countdownSeconds), this.canvasCtx.canvas.width / 2, this.canvasCtx.canvas.height / 2, 60);
+
+            this.Drawer.OverlayText("(ESC) to cancel", this.canvasCtx.canvas.width / 2, this.canvasCtx.canvas.height - this.canvasCtx.canvas.height / 7, 12);
         }
 
     }
@@ -153,6 +157,21 @@ class Game
         {
             this.score ++;
             this.targets.splice(target.index, 1);
+        }
+    }
+
+    HandleKeyPress(e)
+    {
+        if (e.key === "Escape")
+        {
+            if (!this.started)
+            {
+                this.cancelGameCB();
+            }
+            else
+            { 
+                this.gameOverCB(this.score, this.CalculateAccPercent());
+            }
         }
     }
 }

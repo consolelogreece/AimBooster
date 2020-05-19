@@ -8,6 +8,8 @@ class GameOverMenu
 
         let paddingside =  canvasCtx.canvas.width / 10;
 
+        this.callbacks = callbacks;
+
         this.Drawer = new DrawerMenu(canvasCtx);
 
         this.rects = {
@@ -58,7 +60,7 @@ class GameOverMenu
 
         this.canvasCtx.font = '30pt Roboto';
 
-        this.canvasCtx.fillStyle = '#444';
+        this.canvasCtx.fillStyle = '#333';
         this.canvasCtx.textAlign = "center";  
         this.canvasCtx.fillText("Training Complete", this.canvasCtx.canvas.width / 2, this.titleOffset);
 
@@ -68,6 +70,14 @@ class GameOverMenu
         for(let key in this.rects)
         {
             this.Drawer.DrawRect(this.rects[key]);
+        }
+    }
+
+    HandleKeyPress(e)
+    {
+        if (e.key === "Escape")
+        {
+            this.callbacks.MainMenu();
         }
     }
 }

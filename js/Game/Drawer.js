@@ -44,8 +44,8 @@ class DrawerGame
 
     DrawInfoBox()
     {
-        this.canvasCtx.fillStyle = "#444";
-        this.canvasCtx.strokeStyle = "#444";
+        this.canvasCtx.fillStyle = "#333";
+        this.canvasCtx.strokeStyle = "#333";
         this.canvasCtx.fillRect(0, 0, this.canvasCtx.canvas.width, this.topOffset);
     }
 
@@ -59,7 +59,6 @@ class DrawerGame
         this.canvasCtx.arc(target.x, target.y, target.r, 0, 2 * Math.PI);
         this.canvasCtx.fill();
     }
-
 
     OverlayText(text, x, y, fontsize)
     {

@@ -56,7 +56,7 @@ class MainMenu
 
         this.canvasCtx.font = '30pt Roboto';
 
-        this.canvasCtx.fillStyle = '#444';
+        this.canvasCtx.fillStyle = '#333';
         this.canvasCtx.textAlign = "center";  
         this.canvasCtx.fillText("Main Menu", this.canvasCtx.canvas.width / 2, this.titleOffset);
 
