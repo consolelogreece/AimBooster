@@ -12,6 +12,9 @@ class HighScoresMenu
             }
         };
 
+        this.tableMarginTop = 80;
+        this.titleOffset = 45;
+
         this.UpdateHighScores();
 
         // if another place needs to listen to onstorage event, set this elsewhere and have an array of delegates.
@@ -52,13 +55,19 @@ class HighScoresMenu
     {
         this.Drawer.Clear();
 
-        let offset = 40;
+        this.canvasCtx.font = '30pt Arial';
+
+        this.canvasCtx.fillStyle = 'black';
+        this.canvasCtx.textAlign = "center";  
+        this.canvasCtx.fillText("High Scores", this.canvasCtx.canvas.width / 2, this.titleOffset);
+
+        let offset = this.tableMarginTop + 40;
         this.canvasCtx.textBaseline = "bottom";
 
         this.DrawTable();
         this.DrawColumnNames(offset);
 
-        this.canvasCtx.font = '20pt Kremlin Pro Web';
+        this.canvasCtx.font = '20pt Arial';
         this.canvasCtx.fillStyle = 'black';
         this.canvasCtx.textAlign = "center";
 
@@ -67,12 +76,12 @@ class HighScoresMenu
         {
             let score = this.HighScores[key];
 
-            this.EnterScoreToTable(key, score, i, 40)
+            this.EnterScoreToTable(key, score, i, offset)
             
             i++
         }
 
-        this.canvasCtx.font = '30pt Kremlin Pro Web';
+        this.canvasCtx.font = '20pt Arial';
         this.canvasCtx.textBaseline = "top";
 
         for(let key in this.rects)
@@ -106,13 +115,13 @@ class HighScoresMenu
         this.canvasCtx.beginPath()
 
         for (var x = 0; x <= bw; x += this.canvasCtx.canvas.width / 3) {
-            this.canvasCtx.moveTo(0.5 + x + p, p);
-            this.canvasCtx.lineTo(0.5 + x + p, bh  + p);
+            this.canvasCtx.moveTo(0.5 + x + p, this.tableMarginTop);
+            this.canvasCtx.lineTo(0.5 + x + p, bh + this.tableMarginTop);
         }
 
         for (var x = 0; x <= bh; x += this.canvasCtx.canvas.height / 8) {
-            this.canvasCtx.moveTo(p, 0.5 + x + p);
-            this.canvasCtx.lineTo(bw + p, 0.5 + x + p);
+            this.canvasCtx.moveTo(p, 0.5 + x + p + this.tableMarginTop);
+            this.canvasCtx.lineTo(bw + p, 0.5 + x + p + this.tableMarginTop);
         }
         
         this.canvasCtx.strokeStyle = "#bbb";

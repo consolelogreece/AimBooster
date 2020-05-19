@@ -10,21 +10,23 @@ class MainMenu
 
         this.rects = {
             Easy: {
-                x: paddingside, y: 25, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Easy, text: "Easy"
+                x: paddingside, y: 120, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Easy, text: "Easy"
             },
             Intermediate: {
-                x: paddingside, y: 110, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Intermediate, text: "Intermediate"
+                x: paddingside, y: 180, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Intermediate, text: "Intermediate"
             },
             Hard: {
-                x: paddingside, y: 195, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Hard, text: "Hard"
+                x: paddingside, y: 240, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Hard, text: "Hard"
             },
             Insane: {
-                x: paddingside, y: 280, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Insane, text: "Insane"
+                x: paddingside, y: 300, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Insane, text: "Insane"
             },
             HighScoresMenu: {
-                x: paddingside, y: 365, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "High Scores"
+                x: paddingside, y: 360, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "High Scores"
             }
         };
+
+        this.titleOffset = 45;
     }
 
     HandleClick(e)
@@ -54,8 +56,14 @@ class MainMenu
     {
         this.Drawer.Clear();
 
-        this.canvasCtx.font = '30pt Kremlin Pro Web';
+        this.canvasCtx.font = '30pt Arial bold';
+
+        this.canvasCtx.fillStyle = 'black';
+        this.canvasCtx.textAlign = "center";  
+        this.canvasCtx.fillText("Main Menu", this.canvasCtx.canvas.width / 2, this.titleOffset);
+
         this.canvasCtx.textBaseline = "top";
+        this.canvasCtx.font = '20pt Arial';
         
         for(let key in this.rects)
         {

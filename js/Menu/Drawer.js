@@ -20,6 +20,7 @@ class DrawerMenu
         this.canvasCtx.closePath();
         this.canvasCtx.fillStyle = 'white';
         this.canvasCtx.textAlign = "center";  
-        this.canvasCtx.fillText(rect.text, rect.x + rect.w / 2, rect.y);
+        this.canvasCtx.textBaseline = "middle"; 
+        this.canvasCtx.fillText(rect.text, rect.x + rect.w / 2, rect.y + (rect.h / 2));
     }
 }
