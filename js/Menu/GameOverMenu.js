@@ -23,7 +23,7 @@ class GameOverMenu
                 x: paddingside, y: 240, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb:  () => {}, text: "Current Highest: " + GameStats.CurrentHighScore
             },
             HighScoresMenu: {
-                x: paddingside, y: 300, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "High Scores"
+                x: paddingside, y: 300, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "Your High Scores"
             },
             MainMenu: {
                 x: paddingside, y: 360, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.MainMenu, text: "Main Menu"

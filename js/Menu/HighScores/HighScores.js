@@ -56,7 +56,7 @@ class HighScoresMenu
 
         this.canvasCtx.fillStyle = '#333';
         this.canvasCtx.textAlign = "center";  
-        this.canvasCtx.fillText("High Scores", this.canvasCtx.canvas.width / 2, this.titleOffset);
+        this.canvasCtx.fillText("Your High Scores", this.canvasCtx.canvas.width / 2, this.titleOffset);
 
         let offset = this.tableMarginTop + 40;
         this.canvasCtx.textBaseline = "bottom";
