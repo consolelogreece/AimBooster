@@ -40,15 +40,16 @@ class Game
             {
                 this.started = true
                 this.gameStartTime = timeNow;
+                this.SpawnNewTarget(); // important to have a target at start to avoid waiting around on easier modes.
             };
 
             return;
         }
 
+        this.deltaTime = timeNow - this.latestTick;
+
         this.UpdateTargets();
 
-        this.deltaTime = timeNow - this.latestTick;
-        
         if (timeNow - this.lastTargetCreationTime > this.TargetSpawnRate)
         {
             this.SpawnNewTarget();
