@@ -60,7 +60,7 @@ class GameOverMenu
 
         this.canvasCtx.fillStyle = '#444';
         this.canvasCtx.textAlign = "center";  
-        this.canvasCtx.fillText("Finished", this.canvasCtx.canvas.width / 2, this.titleOffset);
+        this.canvasCtx.fillText("Training Complete", this.canvasCtx.canvas.width / 2, this.titleOffset);
 
         this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.textBaseline = "top";
