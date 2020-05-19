@@ -59,14 +59,15 @@ class DrawerGame
         this.canvasCtx.fill();
     }
 
-    OverlayText(text)
-    {
-        this.canvasCtx.fillStyle = "rgba(34, 34, 34, 0.7)";
-        this.canvasCtx.fillRect(0, 0, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height);
 
-        this.canvasCtx.font = '20pt Arial';
+    OverlayText(text, x, y, fontsize)
+    {
+        this.canvasCtx.font = fontsize + 'pt Arial';
         this.canvasCtx.fillStyle = 'white';
 
-        this.canvasCtx.fillText(text, 100, 100)
+        this.canvasCtx.textBaseline = "top";
+        this.canvasCtx.textAlign = "center";
+
+        this.canvasCtx.fillText(text, x, y);
     }
 }
