@@ -39,20 +39,10 @@ function InitMenus()
             InitGame(200, 16, "Insane")
             state = "Game";
         },
-        HighScoresMenu: () => {
-            state = "HighScoresMenu";
-        }
+        HighScoresMenu: ShowHighScores
     };
 
     Stack.MainMenu = new MainMenu(ctx, mainMenuCallbacks);
-
-    let highScoresCallbacks = {
-        MainMenu: () => {
-            state="MainMenu";
-        }
-    };
-
-    Stack.HighScoresMenu = new HighScoresMenu(ctx, highScoresCallbacks);
 }
 
 function GameOver(score, accuracy, difficulty)
@@ -61,9 +51,7 @@ function GameOver(score, accuracy, difficulty)
         MainMenu: () => {
             state="MainMenu";
         },
-        HighScoresMenu: () => {
-            state = "HighScoresMenu";
-        }
+        HighScoresMenu: ShowHighScores
     };
 
     SetHighScore({score, accuracy}, difficulty);
@@ -75,6 +63,19 @@ function GameOver(score, accuracy, difficulty)
     Stack.GameOverMenu = new GameOverMenu(ctx, gameOverCallbacks, {Score: score, Accuracy: accuracy, CurrentHighScore: currentHighScore.score});
 
     state = "GameOverMenu";
+}
+
+function ShowHighScores()
+{
+    let highScoresCallbacks = {
+        MainMenu: () => {
+            state="MainMenu";
+        }
+    };
+
+    Stack.HighScoresMenu = new HighScoresMenu(ctx, highScoresCallbacks);
+
+    state = "HighScoresMenu";
 }
 
 function Setup()

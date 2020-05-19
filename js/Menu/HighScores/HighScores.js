@@ -17,11 +17,6 @@ class HighScoresMenu
 
         this.UpdateHighScores();
 
-        // if another place needs to listen to onstorage event, set this elsewhere and have an array of delegates.
-        window.onstorage = () => {
-            this.UpdateHighScores();   
-        };
-
         this.Drawer = new DrawerMenu(canvasCtx);
     }
 

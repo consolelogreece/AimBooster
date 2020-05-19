@@ -10,9 +10,7 @@ function GetHighScores()
 function SetHighScore(score, difficulty)
 {
     let scores = GetHighScores();
-
-    console.log(scores)
-
+    
     let currentHighScore = scores[difficulty];
 
     if (!currentHighScore || score.score > currentHighScore.score)
