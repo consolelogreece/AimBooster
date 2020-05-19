@@ -26,7 +26,7 @@ class MainMenu
             }
         };
 
-        this.titleOffset = 45;
+        this.titleOffset = 50;
     }
 
     HandleClick(e)
@@ -56,7 +56,7 @@ class MainMenu
     {
         this.Drawer.Clear();
 
-        this.canvasCtx.font = '30pt Arial bold';
+        this.canvasCtx.font = '30pt Arial';
 
         this.canvasCtx.fillStyle = 'black';
         this.canvasCtx.textAlign = "center";  

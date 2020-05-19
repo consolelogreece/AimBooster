@@ -12,21 +12,23 @@ class GameOverMenu
 
         this.rects = {
             Score: {
-                x: paddingside, y: 25, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Score:  " + GameStats.Score
+                x: paddingside, y: 120, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Score:  " + GameStats.Score
             },
             Accuracy: {
-                x: paddingside, y: 110, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Accuracy:  " + GameStats.Accuracy + "%"
+                x: paddingside, y: 180, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Accuracy:  " + GameStats.Accuracy + "%"
             },
             CurrentHighScore: {
-                x: paddingside, y: 195, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb:  () => {}, text: "Current Highest: " + GameStats.CurrentHighScore
+                x: paddingside, y: 240, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb:  () => {}, text: "Current Highest: " + GameStats.CurrentHighScore
             },
             HighScoresMenu: {
-                x: paddingside, y: 280, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "High Scores"
+                x: paddingside, y: 300, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "High Scores"
             },
             MainMenu: {
-                x: paddingside, y: 365, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.MainMenu, text: "Main Menu"
+                x: paddingside, y: 360, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.MainMenu, text: "Main Menu"
             }
         };
+
+        this.titleOffset = 50;
     }
 
     HandleClick(e)
@@ -54,7 +56,13 @@ class GameOverMenu
     {
         this.Drawer.Clear();
 
-        this.canvasCtx.font = '30pt Kremlin Pro Web';
+        this.canvasCtx.font = '30pt Arial';
+
+        this.canvasCtx.fillStyle = 'black';
+        this.canvasCtx.textAlign = "center";  
+        this.canvasCtx.fillText("Game Over", this.canvasCtx.canvas.width / 2, this.titleOffset);
+
+        this.canvasCtx.font = '20pt Arial';
         this.canvasCtx.textBaseline = "top";
 
         for(let key in this.rects)
