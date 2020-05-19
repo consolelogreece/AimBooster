@@ -50,9 +50,9 @@ class HighScoresMenu
     {
         this.Drawer.Clear();
 
-        this.canvasCtx.font = '30pt Arial';
+        this.canvasCtx.font = '30pt Roboto';
 
-        this.canvasCtx.fillStyle = 'black';
+        this.canvasCtx.fillStyle = '#444';
         this.canvasCtx.textAlign = "center";  
         this.canvasCtx.fillText("High Scores", this.canvasCtx.canvas.width / 2, this.titleOffset);
 
@@ -62,8 +62,8 @@ class HighScoresMenu
         this.DrawTable();
         this.DrawColumnNames(offset);
 
-        this.canvasCtx.font = '20pt Arial';
-        this.canvasCtx.fillStyle = 'black';
+        this.canvasCtx.font = '20pt Roboto';
+        this.canvasCtx.fillStyle = '#444';
         this.canvasCtx.textAlign = "center";
 
         let i = 1;
@@ -76,7 +76,7 @@ class HighScoresMenu
             i++
         }
 
-        this.canvasCtx.font = '20pt Arial';
+        this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.textBaseline = "top";
 
         for(let key in this.rects)
@@ -87,8 +87,8 @@ class HighScoresMenu
 
     DrawColumnNames(offset)
     {
-        this.canvasCtx.font = "30px Arial";
-        this.canvasCtx.fillStyle = "black";
+        this.canvasCtx.font = "30px Roboto";
+        this.canvasCtx.fillStyle = "#444";
         this.canvasCtx.fillText("Difficulty", this.canvasCtx.canvas.width / 6, offset);
         this.canvasCtx.fillText("Score", this.canvasCtx.canvas.width / 2 , offset);
         this.canvasCtx.fillText("Accuracy", this.canvasCtx.canvas.width -  this.canvasCtx.canvas.width / 6, offset)

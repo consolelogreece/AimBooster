@@ -1,33 +1,33 @@
 #GameCanvas
 {
-  border:1px solid #666;
+  border:1px solid #444;
   margin: 0 auto;
-  background-color: white;
+  background-color: #ebf2ff;
 }
 
 .title
 {
-  color: white;
+  color: #ebf2ff;
   font-size: 40px;
   margin: 5px;
+  font-family: "Roboto";
 }
 
 #GameContainer
 {
   display: inline-block;
   padding: 10px;
- 
   text-align: center;
   background: #444;
   border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 70px auto;
 }
 
 body
 {
   text-align: center;
-
   height: 100vh;
-  background: rgb(1,13,34);
-  background: linear-gradient(172deg, rgba(1,13,34,1) 1%, rgba(111,143,233,1) 74%);
+  background: rgb(51,119,186);
+  background: linear-gradient(137deg, rgba(51,119,186,1) 0%, rgba(154,200,245,1) 100%); 
 }

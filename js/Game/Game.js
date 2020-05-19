@@ -111,7 +111,7 @@ class Game
         
         this.Drawer.DrawInfoBox();
         
-        this.Drawer.DrawText("FPS: " + fps, 70);
+        this.Drawer.DrawText("FPS: " + fps, 80);
         
         this.Drawer.DrawText("Score: " + Math.round(this.score), this.canvasCtx.canvas.width - this.canvasCtx.canvas.width / 1.6);
         
@@ -119,14 +119,14 @@ class Game
         
         let timeRounded = Math.round(((this.latestTick - this.gameStartTime) / 1000) * 10) / 10;
         
-        this.Drawer.DrawText("Time: " + timeRounded.toFixed(1) + "s", this.canvasCtx.canvas.width - 10);
+        this.Drawer.DrawText("Time: " + timeRounded.toFixed(1) + "s", this.canvasCtx.canvas.width - 20);
         
         this.targets.forEach(target => this.Drawer.DrawTarget(target));
 
         if (!this.started) 
         {
             this.canvasCtx.fillStyle = "rgba(34, 34, 34, 0.7)";
-            this.canvasCtx.fillRect(0, 0, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height);
+            this.canvasCtx.fillRect(0, this.topOffset, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height);
 
             this.Drawer.OverlayText("Get Ready!", this.canvasCtx.canvas.width / 2, 100, 30);
 

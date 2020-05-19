@@ -14,8 +14,8 @@ class DrawerGame
 
     DrawText(text, offsetRight)
     {
-        this.canvasCtx.font = "15px Arial";
-        this.canvasCtx.fillStyle = "white";
+        this.canvasCtx.font = "15px Roboto";
+        this.canvasCtx.fillStyle = "#ebf2ff";
         this.canvasCtx.textBaseline = "middle";
         this.canvasCtx.fillText(text, this.canvasCtx.canvas.width - offsetRight, infoBarHeight / 1.6)
     }
@@ -44,7 +44,8 @@ class DrawerGame
 
     DrawInfoBox()
     {
-        this.canvasCtx.fillStyle = "#222222";
+        this.canvasCtx.fillStyle = "#444";
+        this.canvasCtx.strokeStyle = "#444";
         this.canvasCtx.fillRect(0, 0, this.canvasCtx.canvas.width, this.topOffset);
     }
 
@@ -62,8 +63,8 @@ class DrawerGame
 
     OverlayText(text, x, y, fontsize)
     {
-        this.canvasCtx.font = fontsize + 'pt Arial';
-        this.canvasCtx.fillStyle = 'white';
+        this.canvasCtx.font = fontsize + 'pt Roboto';
+        this.canvasCtx.fillStyle = '#ebf2ff';
 
         this.canvasCtx.textBaseline = "top";
         this.canvasCtx.textAlign = "center";

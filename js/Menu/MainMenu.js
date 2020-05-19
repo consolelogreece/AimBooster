@@ -48,22 +48,20 @@ class MainMenu
     }
 
     Update()
-    {
-
-    }
+    {}
 
     Draw()
     {
         this.Drawer.Clear();
 
-        this.canvasCtx.font = '30pt Arial';
+        this.canvasCtx.font = '30pt Roboto';
 
-        this.canvasCtx.fillStyle = 'black';
+        this.canvasCtx.fillStyle = '#444';
         this.canvasCtx.textAlign = "center";  
         this.canvasCtx.fillText("Main Menu", this.canvasCtx.canvas.width / 2, this.titleOffset);
 
         this.canvasCtx.textBaseline = "top";
-        this.canvasCtx.font = '20pt Arial';
+        this.canvasCtx.font = '20pt Roboto';
         
         for(let key in this.rects)
         {

@@ -56,13 +56,13 @@ class GameOverMenu
     {
         this.Drawer.Clear();
 
-        this.canvasCtx.font = '30pt Arial';
+        this.canvasCtx.font = '30pt Roboto';
 
-        this.canvasCtx.fillStyle = 'black';
+        this.canvasCtx.fillStyle = '#444';
         this.canvasCtx.textAlign = "center";  
         this.canvasCtx.fillText("Finished", this.canvasCtx.canvas.width / 2, this.titleOffset);
 
-        this.canvasCtx.font = '20pt Arial';
+        this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.textBaseline = "top";
 
         for(let key in this.rects)

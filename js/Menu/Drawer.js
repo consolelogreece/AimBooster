@@ -18,7 +18,7 @@ class DrawerMenu
         this.canvasCtx.fill(); 
         this.canvasCtx.stroke();
         this.canvasCtx.closePath();
-        this.canvasCtx.fillStyle = 'white';
+        this.canvasCtx.fillStyle = '#ebf2ff';
         this.canvasCtx.textAlign = "center";  
         this.canvasCtx.textBaseline = "middle"; 
         this.canvasCtx.fillText(rect.text, rect.x + rect.w / 2, rect.y + (rect.h / 2));
