@@ -20,6 +20,9 @@ class MainMenu
             },
             Insane: {
                 x: paddingside, y: 325, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.Insane, text: "Insane"
+            },
+            HighScoresMenu: {
+                x: paddingside, y: 425, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "High Scores"
             }
         };
     }

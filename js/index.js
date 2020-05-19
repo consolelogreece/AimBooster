@@ -14,9 +14,9 @@ let state = "MainMenu";
 
 let infoBarHeight = 40; //px
 
-function InitGame(spawnrate, growspeed)
+function InitGame(spawnrate, growspeed, difficulty)
 {
-    Stack.Game = new Game(spawnrate, growspeed, infoBarHeight, ctx, GameOver, 10 * 1000);
+    Stack.Game = new Game(spawnrate, growspeed, infoBarHeight, ctx, (score, accuracy) => GameOver(score, accuracy, difficulty), 10 * 1000);
 }
 
 function InitMenus()
@@ -24,34 +24,46 @@ function InitMenus()
     let mainMenuCallbacks = {
         Easy: () =>
         {
-            InitGame(1200, 10)
+            InitGame(1200, 10, "Easy")
             state = "Game";
         },
         Intermediate: () => {
-            InitGame(500, 10)
+            InitGame(500, 10, "Intermediate")
             state = "Game";
         },
         Hard: () => {
-            InitGame(300, 12)
+            InitGame(300, 12, "Hard")
             state = "Game";
         },
         Insane: () => {
-            InitGame(200, 16)
+            InitGame(200, 16, "Insane")
             state = "Game";
+        },
+        HighScoresMenu: () => {
+            state = "HighScoresMenu";
         }
     };
 
     Stack.MainMenu = new MainMenu(ctx, mainMenuCallbacks);
+
+    let highScoresCallbacks = {
+        MainMenu: () => {
+            state="MainMenu";
+        }
+    };
+
+    Stack.HighScoresMenu = new HighScoresMenu(ctx, highScoresCallbacks);
 }
 
-function GameOver(score, accuracy)
+function GameOver(score, accuracy, difficulty)
 {
-    console.log(score, accuracy)
     let gameOverCallbacks = {
         MainMenu: () => {
             state="MainMenu";
         }
     };
+
+    SetHighScore({score, accuracy}, difficulty);
 
     Stack.GameOverMenu = new GameOverMenu(ctx, gameOverCallbacks, {Score: score, Accuracy: accuracy});
 
