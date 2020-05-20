@@ -76,7 +76,10 @@ class GameOverMenu
 
         this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.textBaseline = "top";
-        this.Drawer.DrawTable([["Score", "Accuracy", "Current Highest"], [this.GameStats.Score, this.GameStats.Accuracy + "%", this.GameStats.CurrentHighScore]], this.canvasCtx.canvas.width, 0, this.canvasCtx.canvas.height / 4, 120)
+
+        this.Drawer.DrawTable([["Score", "Accuracy", "Current Highest"], [this.GameStats.Score, this.GameStats.Accuracy + "%", this.GameStats.CurrentHighScore]], 
+            2, 3, 60, this.canvasCtx.canvas.width / 3, 0, 120
+        );
 
         for(let key in this.rects)
         {

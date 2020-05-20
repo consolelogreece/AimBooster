@@ -79,7 +79,7 @@ class HighScoresMenu
 
         for(let key in this.HighScores) data.push([key, this.HighScores[key].score, this.HighScores[key].accuracy + "%"]);
         
-        this.Drawer.DrawTable([["Difficulty", "Score", "Accuracy"], ...data], this.canvasCtx.canvas.width, 0, this.canvasCtx.canvas.height / 2, offset)
+        this.Drawer.DrawTable([["Difficulty", "Score", "Accuracy"], ...data], data.length+1, 3, 40, this.canvasCtx.canvas.width / 3, 0, offset)
 
         this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.textBaseline = "top";
@@ -89,7 +89,7 @@ class HighScoresMenu
             this.Drawer.DrawRect(this.rects[key], this.hovered == key);
         }
     }
-    
+
     HandleKeyPress(e)
     {
         if (e.key === "Escape")

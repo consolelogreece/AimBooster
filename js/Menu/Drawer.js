@@ -42,38 +42,39 @@ class DrawerMenu
         this.canvasCtx.textBaseline = "middle"; 
         this.canvasCtx.fillText(rect.text, rect.x + rect.w / 2, rect.y + (rect.h / 2));
     }
-    
-    DrawTable(data, width = this.canvasCtx.canvas.width, offsetLeft = 0, height = this.canvasCtx.canvas.height, offsetTop = 0)
+
+    DrawTable(data, nRows, nCols, rowHeight, colWidth, offsetLeft, offsetTop)
     {
-        let colWidth = width / data[0].length;
-        let rowHeight = height / data.length;
-        this.DrawEmptyTable(rowHeight, colWidth, width, offsetLeft, height, offsetTop);
+        this.DrawEmptyTable(nRows, nCols, rowHeight, colWidth, offsetLeft, offsetTop);
+
+        this.canvasCtx.strokeStyle = "#bbb";
+        this.canvasCtx.stroke();
 
         this.canvasCtx.textAlign = "Center";  
         this.canvasCtx.textBaseline = "middle"; 
-
+    
         data.forEach((element, i) => {
             this.FillTableRow(element, i+1, colWidth, rowHeight, offsetLeft, offsetTop)
         });
     }
 
-    DrawEmptyTable(rowHeight, colWidth, width, offsetLeft, height, offsetTop)
+    DrawEmptyTable(nRows, nCols, rowHeight, colWidth, offsetLeft, offsetTop)
     {
         this.canvasCtx.beginPath()
 
-        // data[0] is should be column names
-        for (var i = 0; i <= width; i += colWidth) {
-            this.canvasCtx.moveTo(0.5 + i + offsetLeft, offsetTop);
-            this.canvasCtx.lineTo(0.5 + i + offsetLeft, height + offsetTop);
+        let finalHeight = nRows * rowHeight;
+
+        let finalWidth = nCols * colWidth;
+
+        for (var i = 0; i <= nCols; i ++) {
+            this.canvasCtx.moveTo(0.5 + (i * colWidth) + offsetLeft, offsetTop);
+            this.canvasCtx.lineTo(0.5 + (i * colWidth) + offsetLeft, finalHeight + offsetTop);
         }
 
-        for (var i = 0; i <= height; i += rowHeight) {
-            this.canvasCtx.moveTo(offsetLeft, 0.5 + i + offsetTop);
-            this.canvasCtx.lineTo(width + offsetLeft, 0.5 + i + offsetTop);
+        for (var i = 0; i <= nRows; i ++) {
+            this.canvasCtx.moveTo(offsetLeft, 0.5 + (i * rowHeight) + offsetTop);
+            this.canvasCtx.lineTo(finalWidth + offsetLeft, 0.5 + (i * rowHeight) + offsetTop);
         }
-
-        this.canvasCtx.strokeStyle = "#bbb";
-        this.canvasCtx.stroke();
     }
 
     FillTableRow(data, nRow, colWidth, rowHeight, offsetLeft, offsetTop)
