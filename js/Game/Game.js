@@ -87,11 +87,13 @@ class Game
             }
             else
             {
-                target.r += (this.TargetGrowSpeed * this.deltaTime) / 500;
-
                 if (target.r > this.TargetMaxRadius)
                 {
                     target.deathTime = timeNow;
+                }
+                else
+                {
+                    target.r += (this.TargetGrowSpeed * this.deltaTime) / 500;
                 }
             }  
         }
