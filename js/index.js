@@ -20,7 +20,7 @@ let infoBarHeight = 40; //px
 
 function InitGame(spawnrate, growspeed, difficulty)
 {
-    Stack.Game = new Game(spawnrate, growspeed, infoBarHeight, ctx, (score, accuracy) => GameOver(score, accuracy, difficulty), () => {state = "MainMenu"}, 60 * 1000);
+    Stack.Game = new Game(spawnrate, growspeed, infoBarHeight, ctx, (score, accuracy) => GameOver(score, accuracy, difficulty), () => {state = "MainMenu"}, 10 * 1000);
 }
 
 function InitMenus()

@@ -27,6 +27,8 @@ class Game
         this.countdownSeconds = 0;
         this.countdownEndsSeconds = 3;
 
+        this.postLifeTimeoutMS = 300;
+
         this.started = false;
     }
 
@@ -42,7 +44,7 @@ class Game
             {
                 this.started = true
                 this.gameStartTime = timeNow;
-                this.SpawnNewTarget(); // important to have a target at start to avoid waiting around on easier modes.
+                this.latestTick = timeNow;
             };
 
             return;
@@ -70,16 +72,28 @@ class Game
 
     UpdateTargets()
     {
+        let timeNow = performance.now();
+
         for(let i = this.targets.length - 1; i >= 0; i--)
         {
             let target = this.targets[i];  
 
-            target.r += (this.TargetGrowSpeed * this.deltaTime) / 500;
-
-            if (target.r > this.TargetMaxRadius)
+            if (target.deathTime != null)
             {
-                this.targets.splice(i,1)
+                if (timeNow - target.deathTime > this.postLifeTimeoutMS)
+                {
+                    this.targets.splice(target.index, 1);
+                }
             }
+            else
+            {
+                target.r += (this.TargetGrowSpeed * this.deltaTime) / 500;
+
+                if (target.r > this.TargetMaxRadius)
+                {
+                    target.deathTime = timeNow;
+                }
+            }  
         }
     }
 
@@ -123,7 +137,26 @@ class Game
         
         this.Drawer.DrawText("Time: " + timeRounded.toFixed(1) + "s", this.canvasCtx.canvas.width - 20);
         
-        this.targets.forEach(target => this.Drawer.DrawTarget(target));
+        this.targets.forEach(target => 
+        {
+            if (target.deathTime == null)
+            {
+                this.Drawer.DrawTarget(target, "#0857a6","rgba(154, 200, 245, 0.7)");
+            }
+            else
+            {
+                if (target.r > this.TargetMaxRadius)
+                {
+                    this.Drawer.DrawTarget(target, "rgba(214, 0, 0, 0.7)","rgba(181, 87, 87, 0.4)");
+                }
+                else
+                {
+                    this.Drawer.DrawTarget(target, "#24a816","rgba(126, 235, 115, 0.7)");
+                }
+            }
+        });
+
+        "rgba(154, 200, 245, 0.7)"
 
         if (!this.started) 
         {
@@ -136,7 +169,6 @@ class Game
 
             this.Drawer.OverlayText("(ESC) to cancel", this.canvasCtx.canvas.width / 2, this.canvasCtx.canvas.height - this.canvasCtx.canvas.height / 7, 12);
         }
-
     }
 
     CalculateAccPercent()
@@ -153,10 +185,13 @@ class Game
         this.totalClicks++;
         let coords = GetRelativeMouseCoordsFromEvent(e, this.canvasCtx);
         let target = this.shotHandler.GetIntersectingTarget(coords, this.targets);
-        if (target != null)
-        {
+
+        let timeNow = performance.now();
+
+        if (target != null && target.target.deathTime === null)
+        {  
             this.score ++;
-            this.targets.splice(target.index, 1);
+            target.target.deathTime = timeNow;
         }
     }
 

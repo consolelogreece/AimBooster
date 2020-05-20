@@ -4,6 +4,8 @@ class Target {
       this.x = x;
       this.y = y;
       this.r = r;
+
+      this.deathTime = null;
       
       this.birthTime = performance.now();
     }

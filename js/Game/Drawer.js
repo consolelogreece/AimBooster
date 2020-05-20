@@ -49,11 +49,11 @@ class DrawerGame
         this.canvasCtx.fillRect(0, 0, this.canvasCtx.canvas.width, this.topOffset);
     }
 
-    DrawTarget(target)
+    DrawTarget(target, color1, color2)
     {
         var grd = this.canvasCtx.createRadialGradient(target.x, target.y, target.r,target.x, target.y, 0);
-        grd.addColorStop(0,"#0857a6");
-        grd.addColorStop(1,"rgba(154, 200, 245, 0.7)");
+        grd.addColorStop(0, color1);
+        grd.addColorStop(1, color2);
         this.canvasCtx.fillStyle = grd;
         this.canvasCtx.beginPath();
         this.canvasCtx.arc(target.x, target.y, target.r, 0, 2 * Math.PI);
