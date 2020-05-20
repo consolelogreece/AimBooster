@@ -13,15 +13,15 @@ class GameOverMenu
         this.Drawer = new DrawerMenu(canvasCtx);
 
         this.rects = {
-            Score: {
-                x: paddingside, y: 120, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Score:  " + GameStats.Score, clickable: false
-            },
-            Accuracy: {
-                x: paddingside, y: 180, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Accuracy:  " + GameStats.Accuracy + "%", clickable: false
-            },
-            CurrentHighScore: {
-                x: paddingside, y: 240, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb:  () => {}, text: "Current Highest: " + GameStats.CurrentHighScore, clickable: false
-            },
+            // Score: {
+            //     x: paddingside, y: 120, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Score:  " + GameStats.Score, clickable: false
+            // },
+            // Accuracy: {
+            //     x: paddingside, y: 180, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: () => {}, text: "Accuracy:  " + GameStats.Accuracy + "%", clickable: false
+            // },
+            // CurrentHighScore: {
+            //     x: paddingside, y: 240, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb:  () => {}, text: "Current Highest: " + GameStats.CurrentHighScore, clickable: false
+            // },
             HighScoresMenu: {
                 x: paddingside, y: 300, w: canvasCtx.canvas.width - paddingside * 2, h: 40, cb: callbacks.HighScoresMenu, text: "Your High Scores", clickable: true
             },
@@ -53,7 +53,6 @@ class GameOverMenu
 
         if (rect != undefined && rect.item.clickable)
         {
-            console.log("right")
             this.hovered = rect.name;
         }
         else
@@ -77,6 +76,7 @@ class GameOverMenu
 
         this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.textBaseline = "top";
+        this.Drawer.DrawTable([["Score", "Accuracy", "Current Highest"], [this.GameStats.Score, this.GameStats.Accuracy + "%", this.GameStats.CurrentHighScore]], this.canvasCtx.canvas.width, 0, this.canvasCtx.canvas.height / 4, 120)
 
         for(let key in this.rects)
         {
