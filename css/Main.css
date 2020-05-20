@@ -14,6 +14,12 @@
   font-family: "Roboto";
 }
 
+#nojs
+{
+  color:#ebf2ff;
+  margin:0 auto;
+}
+
 #GameContainer
 {
   padding: 10px;
