@@ -67,25 +67,19 @@ class HighScoresMenu
         this.canvasCtx.textAlign = "center";  
         this.canvasCtx.fillText("Your High Scores", this.canvasCtx.canvas.width / 2, this.titleOffset);
 
-        let offset = this.tableMarginTop + 40;
         this.canvasCtx.textBaseline = "bottom";
-
-        this.DrawTable();
-        this.DrawColumnNames(offset);
-
+        
         this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.fillStyle = '#333';
         this.canvasCtx.textAlign = "center";
+        
+        let data = [];
 
-        let i = 1;
-        for(let key in this.HighScores)
-        {
-            let score = this.HighScores[key];
+        let offset = this.tableMarginTop + 15;
 
-            this.EnterScoreToTable(key, score, i, offset)
-            
-            i++
-        }
+        for(let key in this.HighScores) data.push([key, this.HighScores[key].score, this.HighScores[key].accuracy + "%"]);
+        
+        this.Drawer.DrawTable([["Difficulty", "Score", "Accuracy"], ...data], this.canvasCtx.canvas.width, 0, this.canvasCtx.canvas.height / 2, offset)
 
         this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.textBaseline = "top";
