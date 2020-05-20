@@ -6,7 +6,12 @@ class ShotHandler
         {
             let target = targets[i];
 
-            if (this.IsPointInsideCircle(target.x, target.y, coords.x, coords.y, target.r)) return {target: target, index: i};
+            if (this.IsPointInsideCircle(target.x, target.y, coords.x, coords.y, target.r)) 
+            {
+                // there could be an instance where a new target spawns behind a current dead/clicked one, so if the target is dead continue checking for others in the area that are alive.
+                if (target.deathTime != null) continue;
+                return {target: target, index: i}; 
+            }
         }
     }
 
