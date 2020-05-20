@@ -89,45 +89,7 @@ class HighScoresMenu
             this.Drawer.DrawRect(this.rects[key], this.hovered == key);
         }
     }
-
-    DrawColumnNames(offset)
-    {
-        this.canvasCtx.font = "30px Roboto";
-        this.canvasCtx.fillStyle = "#333";
-        this.canvasCtx.fillText("Difficulty", this.canvasCtx.canvas.width / 6, offset);
-        this.canvasCtx.fillText("Score", this.canvasCtx.canvas.width / 2 , offset);
-        this.canvasCtx.fillText("Accuracy", this.canvasCtx.canvas.width -  this.canvasCtx.canvas.width / 6, offset)
-    }
-
-    EnterScoreToTable(difficulty, score, row, offset)
-    {
-        this.canvasCtx.fillText(difficulty, this.canvasCtx.canvas.width / 6, ((this.canvasCtx.canvas.height / 8) * row) + offset);
-        this.canvasCtx.fillText(score.score, this.canvasCtx.canvas.width / 2 , ((this.canvasCtx.canvas.height / 8) * row) + offset);
-        this.canvasCtx.fillText(score.accuracy + "%", this.canvasCtx.canvas.width -  this.canvasCtx.canvas.width / 6, ((this.canvasCtx.canvas.height / 8) * row) + offset)
-    }
-
-    DrawTable()
-    {
-        var bw = this.canvasCtx.canvas.width;
-        var bh = this.canvasCtx.canvas.height / 1.5;
-        var p = 0;
-
-        this.canvasCtx.beginPath()
-
-        for (var x = 0; x <= bw; x += this.canvasCtx.canvas.width / 3) {
-            this.canvasCtx.moveTo(0.5 + x + p, this.tableMarginTop);
-            this.canvasCtx.lineTo(0.5 + x + p, bh + this.tableMarginTop);
-        }
-
-        for (var x = 0; x <= bh; x += this.canvasCtx.canvas.height / 8) {
-            this.canvasCtx.moveTo(p, 0.5 + x + p + this.tableMarginTop);
-            this.canvasCtx.lineTo(bw + p, 0.5 + x + p + this.tableMarginTop);
-        }
-        
-        this.canvasCtx.strokeStyle = "#bbb";
-        this.canvasCtx.stroke();
-    }
-
+    
     HandleKeyPress(e)
     {
         if (e.key === "Escape")
