@@ -141,18 +141,21 @@ class Game
         
         this.targets.forEach(target => 
         {
+            // target is alive
             if (target.deathTime == null)
             {
                 this.Drawer.DrawTarget(target, "#0857a6","rgba(154, 200, 245, 0.7)");
             }
             else
-            {
+            {   
+                // target expired
                 if (target.r > this.TargetMaxRadius)
                 {
                     this.Drawer.DrawTarget(target, "rgba(214, 0, 0, 0.7)","rgba(181, 87, 87, 0.4)");
                 }
                 else
                 {
+                    // target was shot
                     this.Drawer.DrawTarget(target, "#24a816","rgba(126, 235, 115, 0.7)");
                 }
             }
