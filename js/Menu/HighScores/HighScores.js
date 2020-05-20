@@ -95,7 +95,6 @@ class HighScoresMenu
             
         }
 
-
         this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.textBaseline = "top";
 

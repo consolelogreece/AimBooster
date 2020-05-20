@@ -44,7 +44,6 @@ class GameOverMenu
         if (rect != undefined) rect.item.cb();
     }
 
-
     HandleMouseMove(e)
     {
         let coords = GetRelativeMouseCoordsFromEvent(e, this.canvasCtx);
