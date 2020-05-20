@@ -79,7 +79,22 @@ class HighScoresMenu
 
         for(let key in this.HighScores) data.push([key, this.HighScores[key].score, this.HighScores[key].accuracy + "%"]);
         
-        this.Drawer.DrawTable([["Difficulty", "Score", "Accuracy"], ...data], data.length+1, 3, 40, this.canvasCtx.canvas.width / 3, 0, offset)
+        if (data.length !== 0)
+        {
+            this.Drawer.DrawTable([["Difficulty", "Score", "Accuracy"], ...data], data.length+1, 3, 40, this.canvasCtx.canvas.width / 3, 0, offset)
+        }
+        else
+        {
+            this.canvasCtx.font = '25pt Roboto';
+            this.canvasCtx.fillStyle = '#333';
+            this.canvasCtx.textBaseline = "middle";
+            this.canvasCtx.fillText("You have no highscores :(", this.canvasCtx.canvas.width / 2, this.canvasCtx.canvas.height / 2 - 20);
+
+            this.canvasCtx.font = '10pt Roboto';
+            this.canvasCtx.fillText("Play a game to set your high score", this.canvasCtx.canvas.width / 2, this.canvasCtx.canvas.height / 2 + 20);
+            
+        }
+
 
         this.canvasCtx.font = '20pt Roboto';
         this.canvasCtx.textBaseline = "top";
