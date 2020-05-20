@@ -20,11 +20,14 @@ class DrawerMenu
             if (highlight)
             {
                 this.canvasCtx.fillStyle = '#555';
+                this.canvasCtx.strokeStyle = "#555";
             }
             else
             {
                 this.canvasCtx.fillStyle = '#333';
+                this.canvasCtx.strokeStyle = "#333";
             }
+
             this.canvasCtx.fill(); 
             this.canvasCtx.stroke();
             this.canvasCtx.closePath();
